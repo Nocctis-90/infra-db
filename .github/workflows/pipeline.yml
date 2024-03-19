@@ -1,56 +1,31 @@
-name: pipeline
+name: Terraform AWS RDS
 
 on:
   push:
     branches:
-      - main
-      - develop
+      - main  # Altere para a branch que deseja monitorar
 
 jobs:
-  build:
-    name: Build and Publish
+  terraform:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
+    - name: Checkout repository
+      uses: actions/checkout@v2
 
-      # Aqui você executaria suas etapas de compilação, como construir o aplicativo, executar testes, etc.
-      - name: Build application
-        run: |
-          # Comandos de construção do seu aplicativo
-          echo "Building application..."
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v1
+      with:
+        terraform_version: 1.1.0
 
-      # Etapa para publicar artefatos gerados (por exemplo, imagens Docker, artefatos de compilação)
-      - name: Publish Artifacts
-        uses: actions/upload-artifact@v2
-        with:
-          name: my-app-artifacts
-          path: path/to/artifacts # Caminho para os artefatos gerados
+    - name: Terraform Init
+      run: terraform init
 
- ## deploy:
-  ##  name: Deploy to Cloud
-  ##  runs-on: ubuntu-latest
+    - name: Terraform Plan
+      run: terraform plan
 
-  ##  needs: build
-
-  ##  steps:
-    ##  - name: Checkout repository
-    ##    uses: actions/checkout@v2
-##
-      # Baixe os artefatos publicados da etapa de construção
-  ##    - name: Download Artifacts
-   ##     uses: actions/download-artifact@v2
-    ##    with:
-      ##    name: my-app-artifacts
-      ##    path: path/to/download # Caminho onde os artefatos serão baixados
-
-      # Aqui você realizaria o processo de implantação na sua conta da nuvem (por exemplo, Kubernetes, AWS, Azure, etc.)
-      # Substitua os comandos e configurações com os apropriados para sua nuvem.
-    ## - name: Deploy to Kubernetes
-   ##     run: |
-          # Comandos de implantação no Kubernetes
-      ##    echo "Deploying application to Kubernetes..."
-
-          # Exemplo: aplicar um arquivo de manifesto do Kubernetes
-       ##   kubectl apply -f path/to/kubernetes/manifests
+    - name: Terraform Apply
+      run: terraform apply -auto-approve
+      env:
+        AWS_ACCESS_KEY_ID: AKIA3FLDZKWYLDD5Y3VU
+        AWS_SECRET_ACCESS_KEY: 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
