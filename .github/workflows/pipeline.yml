@@ -50,9 +50,6 @@ jobs:
     #  - name: Deploy to Kubernetes
    #     run: |
           # Comandos de implantação no Kubernetes
-     #     echo "Deploying application to Kubernetes..."
-
-     
-
+     #     echo "Deploying application to Kubernetes...
           # Exemplo: aplicar um arquivo de manifesto do Kubernetes
       #    kubectl apply -f path/to/kubernetes/manifests
