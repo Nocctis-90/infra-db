@@ -17,5 +17,5 @@ resource "aws_db_instance" "example" {
   tags = {
     Name = "ExampleDB"
   }
-}
+} 
 
