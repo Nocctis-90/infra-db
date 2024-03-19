@@ -53,3 +53,5 @@ resource "aws_iam_role_policy_attachment" "minha_politica_attachment" {
   role       = aws_iam_role.meu_role.name
   policy_arn = aws_iam_policy.minha_politica.arn
 }
+
+
