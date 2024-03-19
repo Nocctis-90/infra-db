@@ -10,13 +10,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout repository
+    - name: Clonando repository
       uses: actions/checkout@v2
 
-    - name: Setup Terraform
+    - name: Instalando Terraform
       uses: hashicorp/setup-terraform@v1
       with:
-        terraform_version: 1.2.0
+        terraform_version: 1.6.2
+    
+    - name: Confugurando Credenciais da AWS
+      uses: aws-actions/configure-aws-credentials@v4.0.1
+      with:
+        aws-region: us-east-1 # Substitua pela sua região    
 
     - name: Terraform Init
       run: terraform init
