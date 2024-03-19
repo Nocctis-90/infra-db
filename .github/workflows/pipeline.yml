@@ -28,29 +28,29 @@ jobs:
           name: my-app-artifacts
           path: path/to/artifacts # Caminho para os artefatos gerados
 
-  deploy:
-    name: Deploy to Cloud
-    runs-on: ubuntu-latest
+ ## deploy:
+  ##  name: Deploy to Cloud
+  ##  runs-on: ubuntu-latest
 
-    needs: build
+  ##  needs: build
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
-
+  ##  steps:
+    ##  - name: Checkout repository
+    ##    uses: actions/checkout@v2
+##
       # Baixe os artefatos publicados da etapa de construção
-      - name: Download Artifacts
-        uses: actions/download-artifact@v2
-        with:
-          name: my-app-artifacts
-          path: path/to/download # Caminho onde os artefatos serão baixados
+  ##    - name: Download Artifacts
+   ##     uses: actions/download-artifact@v2
+    ##    with:
+      ##    name: my-app-artifacts
+      ##    path: path/to/download # Caminho onde os artefatos serão baixados
 
       # Aqui você realizaria o processo de implantação na sua conta da nuvem (por exemplo, Kubernetes, AWS, Azure, etc.)
       # Substitua os comandos e configurações com os apropriados para sua nuvem.
-      - name: Deploy to Kubernetes
-        run: |
+    ## - name: Deploy to Kubernetes
+   ##     run: |
           # Comandos de implantação no Kubernetes
-          echo "Deploying application to Kubernetes..."
+      ##    echo "Deploying application to Kubernetes..."
 
           # Exemplo: aplicar um arquivo de manifesto do Kubernetes
-          kubectl apply -f path/to/kubernetes/manifests
+       ##   kubectl apply -f path/to/kubernetes/manifests
