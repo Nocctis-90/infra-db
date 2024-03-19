@@ -1,4 +1,4 @@
-provider "aws.east" {
+provider "aws" {
   region = "us-east-1"  # substitua pela sua região desejada
 }
 
