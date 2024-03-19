@@ -13,24 +13,20 @@ jobs:
     - name: Clonando repository
       uses: actions/checkout@v2
 
-    - name: Instalando Terraform
+    - name: Setup AWS CLI
+      uses: aws-actions/configure-aws-credentials@v2
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: us-east-1  # Substitua pela sua região desejada
+
+    - name: Install Terraform
       uses: hashicorp/setup-terraform@v1
       with:
         terraform_version: 1.6.2
-    
-    - name: Confugurando Credenciais da AWS
-      uses: aws-actions/configure-aws-credentials@v4.0.1
-      with:
-        aws-region: us-east-1 # Substitua pela sua região    
 
     - name: Terraform Init
       run: terraform init
 
-    - name: Terraform Plan
-      run: terraform plan
-
     - name: Terraform Apply
       run: terraform apply -auto-approve
-      env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
