@@ -6,6 +6,6 @@ resource "aws_db_instance" "default" {
   engine               = "postgres"
   engine_version       = "15.4"
   instance_class       = "db.t3.micro"
-  username             = teste
-  password             = teste124
+  username             = "teste"
+  password             = "teste124"
 }
